@@ -1,6 +1,6 @@
 defmodule CameraApi.DatabaseSeeder do
   alias CameraApi.Repo
-  alias CameraApi.Accounts.User
+  alias CameraApi.Account.User
   alias CameraApi.Devices.Camera
   import Logger
 
@@ -101,4 +101,3 @@ defmodule CameraApi.DatabaseSeeder do
     end
   end
 end
-

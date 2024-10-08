@@ -2,12 +2,20 @@ defmodule CameraApi.Devices.Camera do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder,
+           only: [
+             :external_id,
+             :brand,
+             :name,
+             :active
+           ]}
+
   schema "cameras" do
     field :external_id, :binary_id
     field :brand, :string
     field :name, :string
     field :active, :boolean, default: true
-    belongs_to :user, CameraApi.Accounts.User
+    belongs_to :user, CameraApi.Account.User
 
     timestamps(type: :utc_datetime)
   end

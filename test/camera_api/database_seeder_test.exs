@@ -1,7 +1,7 @@
 defmodule CameraApi.DatabaseSeederTest do
   use CameraApi.DataCase, async: false
   alias CameraApi.Repo
-  alias CameraApi.Accounts.User
+  alias CameraApi.Account.User
   alias CameraApi.Devices.Camera
 
   @total_users 100
@@ -9,6 +9,9 @@ defmodule CameraApi.DatabaseSeederTest do
   @expected_brands ["Intelbras", "Hikvision", "Giga", "Vivotek", "Dahua", "Axis"]
 
   setup do
+    Repo.delete_all(Camera)
+    Repo.delete_all(User)
+
     :ok
   end
 
@@ -68,4 +71,3 @@ defmodule CameraApi.DatabaseSeederTest do
     end
   end
 end
-
