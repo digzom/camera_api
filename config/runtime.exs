@@ -114,4 +114,11 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  config :swoosh, :api_client, Swoosh.ApiClient.Req
+
+  config :camera_api, CameraApi.Mailer,
+    adapter: Swoosh.Adapters.Sendgrid,
+    api_key: System.get_env("MAILER_API_KEY"),
+    sender: System.get_env("MAILER_SENDER")
 end

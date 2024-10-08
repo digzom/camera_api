@@ -6,6 +6,7 @@ defmodule CameraApi.Repo.Migrations.CreateUsersTable do
       add :name, :string, null: false
       add :ended_at, :utc_datetime
       add :external_id, :binary_id
+      add :email, :string
 
       timestamps()
     end

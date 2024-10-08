@@ -9,7 +9,7 @@ defmodule CameraApiWeb.Router do
     pipe_through :api
 
     get "/cameras", CamerasController, :index
-    post "/notify-users", NotificationsController, :notify_hikvision_users
+    post "/notify-users", NotificationController, :create
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

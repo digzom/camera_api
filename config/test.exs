@@ -21,7 +21,10 @@ config :camera_api, CameraApiWeb.Endpoint,
   server: false
 
 # In test we don't send emails
-config :camera_api, CameraApi.Mailer, adapter: Swoosh.Adapters.Test
+config :camera_api, CameraApi.Mailer,
+  adapter: Swoosh.Adapters.Test,
+  api_key: "some_key",
+  sender: "example@email.com"
 
 # Disable swoosh api client as it is only required for production adapters
 config :swoosh, :api_client, false
@@ -31,3 +34,5 @@ config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :swoosh, :api_client, Swoosh.ApiClient.Req

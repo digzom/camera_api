@@ -45,7 +45,9 @@ defmodule CameraApi.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
-      {:faker, "~> 0.18", only: [:dev, :test]}
+      {:faker, "~> 0.18", only: [:dev, :test]},
+      {:phoenix_swoosh, "~> 1.2.1"},
+      {:req, "~> 0.5.0"}
     ]
   end
 
