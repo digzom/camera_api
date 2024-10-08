@@ -2,17 +2,14 @@ defmodule CameraApi.Devices.Camera do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @primary_key {:id, :binary_id, autogenerate: true}
-  @foreign_key_type :binary_id
-  @timestamps_opts [type: :utc_datetime_usec]
-
   schema "cameras" do
+    field :external_id, :binary_id
     field :brand, :string
     field :name, :string
     field :active, :boolean, default: true
     belongs_to :user, CameraApi.Accounts.User
 
-    timestamps()
+    timestamps(type: :utc_datetime)
   end
 
   def changeset(camera, attrs) do
@@ -20,5 +17,6 @@ defmodule CameraApi.Devices.Camera do
     |> cast(attrs, [:brand, :name, :active, :user_id])
     |> validate_required([:brand, :name, :active, :user_id])
     |> validate_inclusion(:brand, ["Intelbras", "Hikvision", "Giga", "Vivotek"])
+    |> put_change(:external_id, Ecto.UUID.generate())
   end
 end

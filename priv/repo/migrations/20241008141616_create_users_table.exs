@@ -4,7 +4,8 @@ defmodule CameraApi.Repo.Migrations.CreateUsersTable do
   def change do
     create table(:users) do
       add :name, :string, null: false
-      add :terminated_at, :utc_datetime
+      add :ended_at, :utc_datetime
+      add :external_id, :binary_id
 
       timestamps()
     end
