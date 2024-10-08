@@ -2,6 +2,10 @@ defmodule CameraApi.Devices.Camera do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
+  @timestamps_opts [type: :utc_datetime_usec]
+
   schema "cameras" do
     field :brand, :string
     field :name, :string
@@ -18,4 +22,3 @@ defmodule CameraApi.Devices.Camera do
     |> validate_inclusion(:brand, ["Intelbras", "Hikvision", "Giga", "Vivotek"])
   end
 end
-
