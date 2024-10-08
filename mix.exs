@@ -4,6 +4,13 @@ defmodule CameraApi.MixProject do
   def project do
     [
       app: :camera_api,
+      releases: [
+        camera_api: [
+          include_executables_for: [:unix],
+          overlays: ["rel/overlays"],
+          applications: [camera_api: :permanent, faker: :permanent]
+        ]
+      ],
       version: "0.1.0",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +26,7 @@ defmodule CameraApi.MixProject do
   def application do
     [
       mod: {CameraApi.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :faker]
     ]
   end
 
@@ -45,7 +52,7 @@ defmodule CameraApi.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
-      {:faker, "~> 0.18", only: [:dev, :test]},
+      {:faker, "~> 0.18"},
       {:phoenix_swoosh, "~> 1.2.1"},
       {:req, "~> 0.5.0"}
     ]

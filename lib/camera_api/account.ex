@@ -1,5 +1,6 @@
 defmodule CameraApi.Account do
   import Ecto.Query
+  alias CameraApi.Pagination
   alias CameraApi.Repo
   alias CameraApi.Account.User
   alias CameraApi.Devices.Camera
@@ -36,7 +37,10 @@ defmodule CameraApi.Account do
       |> filter_by_user_external_id(params)
       |> filter_by_user_ended_at(params)
       |> order_by(^build_order_by(params))
-      |> Repo.all()
+      |> Pagination.new(params)
+
+    users =
+      users.entries
       |> Enum.map(&filter_user_cameras(&1, params))
       |> Enum.filter(&(!Enum.empty?(&1.cameras)))
       |> Enum.map(&format_user/1)

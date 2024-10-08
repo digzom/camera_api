@@ -4,6 +4,8 @@ defmodule CameraApi.DatabaseSeeder do
   alias CameraApi.Devices.Camera
   import Logger
 
+  Application.ensure_loaded(:faker)
+
   @brands ["Intelbras", "Hikvision", "Giga", "Vivotek", "Dahua", "Axis"]
   @batch_size 100
 
