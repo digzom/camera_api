@@ -64,3 +64,8 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+config :camera_api, CameraApi.Mailer,
+  adapter: Swoosh.Adapters.Local,
+  api_key: "some_key",
+  sender: "example@email.com"

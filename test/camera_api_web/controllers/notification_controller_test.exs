@@ -72,7 +72,7 @@ defmodule CameraApiWeb.NotificationControllerTest do
     end
 
     test "sends notifications to users with active Hikvision cameras", %{conn: conn} do
-      conn = post(conn, ~p"/api/notify-users")
+      conn = post(conn, ~p"/api/notify_users")
 
       assert json_response(conn, 200)["message"] == "Notifications processed"
 
@@ -90,14 +90,14 @@ defmodule CameraApiWeb.NotificationControllerTest do
     test "handles case when no users have active Hikvision cameras", %{conn: conn} do
       Repo.update_all(Camera, set: [active: false])
 
-      conn = post(conn, ~p"/api/notify-users")
+      conn = post(conn, ~p"/api/notify_users")
 
       assert json_response(conn, 200)["message"] == "Notifications processed"
       assert json_response(conn, 200)["results"] == []
     end
 
     test "emails are sent", %{conn: conn} do
-      post(conn, ~p"/api/notify-users")
+      post(conn, ~p"/api/notify_users")
 
       assert_email_sent(to: {"John Doe", "john@example.com"})
       assert_email_sent(to: {"Jane Doe", "jane@example.com"})
